@@ -1,19 +1,30 @@
-#  HCI System based on Computer Vision and UDP Telemetry
+# 🖐️ Vision-Based HCI System with UDP Telemetry
 
-This project features a Human-Computer Interaction (**Human-Computer Interaction**) interface that enables system control through real-time hand gesture recognition. Using Python (MediaPipe, OpenCV, etc.), the system tracks hand landmarks to simulate mouse functions such as clicking, scrolling, and cursor movement.
+> **A real-time Human-Computer Interaction interface that maps hand gestures to system commands using Computer Vision and streams data via UDP for kinematic analysis.**
 
-Processed data, including Cartesian coordinates and gesture IDs, is transmitted to an external server or MATLAB via the UDP protocol (Port 5005). This telemetric connection allows for real-time performance monitoring and kinematic motion analysis within the MATLAB environment, providing a solid foundation for optimizing recognition algorithms.
+## 🌟 Overview
+This project demonstrates a multi-platform approach to gesture recognition. It uses **Python** for high-speed image processing and hand landmark detection, then streams coordinates to **MATLAB** via **UDP** for real-time trajectory plotting and performance monitoring.
 
-**IMPORTANT** - To view the English version of the code, please access the project files: **main_english.py**(mouse control) and **gesture_tracker.m**(MATLAB)
+## 🚀 Key Features
+* **Real-time Hand Tracking:** Uses MediaPipe and OpenCV to detect 21 hand landmarks at 30+ FPS.
+* **Virtual Input Simulation:** Implements Left/Right Click, Cursor Movement, and Scrolling using `pyautogui`.
+* **UDP Telemetry:** Low-latency data transmission (Port 5005) between Python and MATLAB.
+* **Live Visualization:** MATLAB script for real-time plotting of the finger's Cartesian path.
 
+## 🛠️ Tech Stack
+* **Python:** OpenCV, MediaPipe, NumPy, Socket.
+* **MATLAB:** UDP Port communication, Animated Lines (Live Plotting).
 
+## 📈 Project Evolution & Technical Challenges
 
+### 🔍 Challenge 1: Environment Compatibility (MediaPipe vs. Python Versions)
+One of the primary hurdles was configuring the **MediaPipe** library within the VS Code environment. I encountered significant compatibility issues where the library failed to initialize due to version mismatches between the global Python interpreter and the local virtual environment. 
+* **Solution:** I performed extensive debugging of the environment variables and eventually transitioned to a specific Python 3.9 interpreter, ensuring all dependencies (OpenCV, Protobuf) were correctly mapped.
 
-#  Sistem HCI bazat pe Computer Vision și Telemetrie UDP
+### ⚡ Challenge 2: Jittery Cursor Movement
+Initially, the mouse cursor was highly unstable due to the raw sensitivity of hand landmark tracking.
+* **Solution:** I implemented a **stabilization logic** using `numpy.clip` and coordinate clamping within a "Virtual Touchpad" zone. This filtered out minor hand tremors, resulting in a smooth, professional user experience.
 
-Acest proiect reprezintă o interfață om-calculator (**Human-Computer Interaction**) care permite controlul sistemului prin gesturi ale mâinii capturate în timp real. 
-Utilizând Python (MediaPipe, OpenCV, etc.), sistemul recunoaște poziția reperelor (landmarks) de la nivelul mâinii pentru 
-a simula funcții de mouse (click, scroll, mișcare).
-Datele procesate (coordonate carteziene și ID-ul gestului) sunt transmise către un server extern sau către MATLAB prin protocolul UDP (Port 5005). 
-Această conexiune permite monitorizarea performanței sistemului în timp real și analiza cinematică a mișcărilor în mediul MATLAB, 
-oferind o bază solidă pentru optimizarea algoritmilor de recunoaștere.
+### 🌐 Challenge 3: Cross-Platform Communication (UDP)
+Synchronizing data between Python (Emitter) and MATLAB (Receiver) required precise timing to avoid packet loss.
+* **Solution:** I developed a robust UDP telemetry protocol on Port 5005, optimizing the data string format for low-latency transmission.
