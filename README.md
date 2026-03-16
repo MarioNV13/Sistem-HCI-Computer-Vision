@@ -28,3 +28,12 @@ Initially, the mouse cursor was highly unstable due to the raw sensitivity of ha
 ### 🌐 Challenge 3: Cross-Platform Communication (UDP)
 Synchronizing data between Python (Emitter) and MATLAB (Receiver) required precise timing to avoid packet loss.
 * **Solution:** I developed a robust UDP telemetry protocol on Port 5005, optimizing the data string format for low-latency transmission.
+
+📄 Project Structure & Language Versions
+This repository contains two versions of the source code to accommodate different presentation contexts:
+
+🇬🇧 English Version: This is the primary version intended for the global developer community and GitHub portfolio. It features English variables, function names, and comprehensive documentation.
+
+🇷🇴 Romanian Version: This version is specifically maintained for my upcoming Scientific Communications Session (Sesiunea de Comunicări Științifice) at the university, scheduled for May 2026. It ensures alignment with local academic requirements and presentation standards.
+
+Note to Reviewers: For code review and technical assessment, please refer to the files: main_english.py and gesture.tracker.m .
